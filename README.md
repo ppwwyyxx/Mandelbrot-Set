@@ -1,9 +1,9 @@
 ## Introduction
 
-This is a small Xwindow program to display a Mandelbrot Set implemented by multi-thread / multi-process programming library.
+This is a small Xwindow program to display a [Mandelbrot Set](http://en.wikipedia.org/wiki/Mandelbrot_set) implemented by multi-thread / multi-process programming library.
 
 ## Compile
-Dependencies: openmpi
+Dependencies: [openmpi](http://www.open-mpi.org/)
 
 Compile:
 ```
