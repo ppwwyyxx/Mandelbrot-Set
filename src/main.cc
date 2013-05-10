@@ -1,5 +1,5 @@
 // File: main.cc
-// Date: Sun Aug 26 22:17:34 2012 +0800
+// Date: Sat Nov 24 14:39:47 2012 +0800
 // Author: Yuxin Wu <ppwwyyxxc@gmail.com>
 
 #include <mpi.h>
@@ -163,7 +163,7 @@ int main(int argc, char* argv[]){
 	if (myid == 0){
 #endif
 		t2 = MPI_Wtime();
-		printf("%.6lf seconds elapsed\n", t2 - t1);  
+		printf("%.6lf seconds elapsed\n", t2 - t1);
 
 		if (use_png)
 			write_image(png_fname.c_str(), img, SIZE_X, SIZE_Y);

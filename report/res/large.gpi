@@ -1,0 +1,11 @@
+
+set term png enhanced
+set output "large.png"
+set xlabel 'nproc'
+set ylabel "Time (Seconds)"
+#set xtics ( "40" 400000, "60" 600000, "80" 800000, "100" 1000000, "120" 1200000)
+
+
+plot "large" with linespoints
+
+

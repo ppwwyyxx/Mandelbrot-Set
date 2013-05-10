@@ -1,0 +1,23 @@
+% File: design.tex
+% Date: Sun Aug 26 17:01:13 2012 +0800
+% Author: Yuxin Wu <ppwwyyxxc@gmail.com>
+\section{Design}
+	程序通过编译选项\verb|-DUSE_MPI, -DUSE_OMP, -DUSE_PTHREAD|指定使用的多线程库,通过命令行参数指定算法迭代深度,绘图范围,图片大小等信息.
+	初始化完毕后,程序调用\verb|MPI_Wtime()|计时,对指定区域计算,计算结束后将图像数据存放在\verb|short* img|中,输出所耗时间,如有必要则进行图形渲染,随后退出.
+
+	当定义了\verb|USE_OMP|宏时,程序调用\verb|cal_rectangle_omp()|函数进行计算,函数中循环体前有\verb|#pragma omp parallel for schedule(dynamic)|一行,
+对下方的for循环自动进行了动态多线程任务调度.
+	
+	当定义了\verb|USE_PTHREAD|宏时,程序调用\verb|cal_rectangle_pth()|函数.
+	函数创建\verb|nproc|个线程,每个线程每次领取区域中十列数据的计算任务,并使用一个mutex用于记录当前未领的任务.
+	
+	当定义了\verb|USE_MPI|宏时,程序调用\verb|cal_rectangle_mpi()|函数.
+	root进程只负责进行任务调度,将任务以100列资料为一个单位发送.各进程接收root发送的BEGIN信息以及任务的起始列数,便开始计算,计算完成后向root进程发送FINISH信息及计算数据.
+	由于单个数据规模小,因此使用short进行储存以节省通信成本.
+
+	数据计算完毕后,若需要输出png图片,则调用libpng库进行图片渲染.
+	若需要实时显示,则初始化Xwindow, 将图片逐点绘制并开始接收键盘事件.
+	接收到缩放,移动按键后对绘图参数进行处理,再调用计算函数重新绘制但不再计时,直至收到ESC按键,程序退出.
+
+	在染色方面,经过多次尝试,设计出了一个关于迭代次数与最大迭代次数的函数代表各点的灰度,这个函数使得集合内的点为纯黑色,集合周围迭代次数较高的点为灰色,但与黑色无法充分接近,迭代次数少的点较白.
+	这个配色函数可保证即使放大多倍,集合边界也十分明显,同时在最大迭代次数改变时常常能找到美丽的图案.

@@ -1,5 +1,5 @@
 // File: Xoutput.h
-// Date: Fri Aug 24 11:47:00 2012 +0800
+// Date: Sat Nov 24 11:39:58 2012 +0800
 // Author: Yuxin Wu <ppwwyyxxc@gmail.com>
 
 #ifndef __HEAD__XOUTPUT

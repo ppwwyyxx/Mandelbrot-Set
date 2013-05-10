@@ -1,5 +1,5 @@
 // File: calculate.h
-// Date: Sat Aug 25 19:32:48 2012 +0800
+// Date: Sat Nov 24 11:38:55 2012 +0800
 // Author: Yuxin Wu <ppwwyyxxc@gmail.com>
 
 #ifndef __HEAD__CALCULATE
