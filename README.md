@@ -9,13 +9,13 @@ Compile:
 ```
 $ ./make_all_version
 ```
-This will generate 4 versions of the program.
+This will generate 4 versions of the program: sequential, openmp, mpi, pthread
 
 ## Example
 ![demo](https://github.com/ppwwyyxx/Mandelbrot-Set/raw/master/report/res/show.png)
 
 ## Usage
-For Help on Command Line Arguments, ``./omp --help``
+See Help on Command Line Arguments, e.g.:
 
 ```
 $ ./omp --help
@@ -33,6 +33,6 @@ Options:
     --help, -h           show this help and quit
 ```
 
-In GUI, use '='/'-' to zoom. Use 's' to save current view (read file name from stdin).
+In GUI, use '='/'-' to zoom. Use 's' to save current view (file name is read from stdin).
 
 Use 'c' to change iteration value to get a clearer picture.
