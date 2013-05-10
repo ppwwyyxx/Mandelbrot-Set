@@ -14,6 +14,8 @@ This will generate 4 versions of the program: sequential, openmp, mpi, pthread
 ## Example
 ![demo](https://github.com/ppwwyyxx/Mandelbrot-Set/raw/master/report/res/show.png)
 
+![demo2](https://github.com/ppwwyyxx/Mandelbrot-Set/raw/master/report/res/showmore.jpg)
+
 ## Usage
 See Help on Command Line Arguments, e.g.:
 
