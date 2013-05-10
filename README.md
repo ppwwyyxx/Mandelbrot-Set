@@ -1,20 +1,22 @@
 ## Introduction
-	This is a small Xwindow program to display a Mandelbrot Set implemented by
-	multi-thread / multi-process programming library.
+
+This is a small Xwindow program to display a Mandelbrot Set implemented by multi-thread / multi-process programming library.
 
 ## Compile
-	+ Dependencies:
-		openmpi
+Dependencies: openmpi
 
-	+ Compile:
-		./make_all_version
-		This will generate 4 versions of the program.
+Compile:
+```
+$ ./make_all_version
+```
+This will generate 4 versions of the program.
 
 ## Example
 ![demo](https://github.com/ppwwyyxx/Mandelbrot-Set/raw/master/report/res/show.png)
 
 ## Usage
-	For Help on Command Line Arguments, `./omp --help`
+For Help on Command Line Arguments, ``./omp --help``
+
 ```
 $ ./omp --help
 Options:
@@ -31,5 +33,6 @@ Options:
     --help, -h           show this help and quit
 ```
 
-	In GUI, use '='/'-' to zoom. Use 's' to save current view (read file name from stdin).
-	Use 'c' to change iteration value to get a clearer picture.
+In GUI, use '='/'-' to zoom. Use 's' to save current view (read file name from stdin).
+
+Use 'c' to change iteration value to get a clearer picture.
