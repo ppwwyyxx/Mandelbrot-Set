@@ -1,5 +1,5 @@
 // File: calculate.cc
-// Date: Thu Aug 30 09:24:54 2012 +0800
+// Date: Sat May 11 23:40:37 2013 +0800
 // Author: Yuxin Wu <ppwwyyxxc@gmail.com>
 
 #include <mpi.h>
@@ -58,16 +58,15 @@ short cal(double cr, double ci){
 	double cr = line_start * xlen / SIZE_X + xmin; \
 	double ci = j * ylen / SIZE_Y + ymin; \
 	short t = cal(cr, ci); \
-	ptr[i * SIZE_Y + j] = 255 - sqrt(t) * 16; 
+	ptr[i * SIZE_Y + j] = 255 - sqrt(t) * 16;
 
 void cal_rectangle_omp(){
 #ifdef USE_OMP
 #pragma omp parallel for schedule(dynamic)
 #endif
 	for (int i = 0; i < SIZE_X; i ++)
-		for (int j = 0; j < SIZE_Y; j ++){
+		for (int j = 0; j < SIZE_Y; j ++)
 			cal_pixel(img, i, i, j);
-		}
 }
 
 void cal_rectangle_mpi(){
@@ -91,20 +90,20 @@ void cal_rectangle_mpi(){
 		while ((nowx < SIZE_X) || (nFinished < nproc - 1)){
 			print_debug("nowx: %d, nFinished: %d", nowx, nFinished);
 			// buf is the beginning line in the task ( 0 ~ SIZE_Y - 1)
-			recv(&buf, 1, MPI_ANY_SOURCE, FINISH); 
+			recv(&buf, 1, MPI_ANY_SOURCE, FINISH);
 			int source = status.MPI_SOURCE;
 			print_debug("get finished task %d from %d", buf, source);
 			nFinished ++;
 			int line_of_work = min(unit, SIZE_X - buf);
 			//recv data
-			recv_i(&img[buf * SIZE_Y] , line_of_work * SIZE_Y, source, DATA); 
+			recv_i(&img[buf * SIZE_Y] , line_of_work * SIZE_Y, source, DATA);
 			print_debug("get finished data from %d", source);
 
 			if (nowx < SIZE_X){
 				nFinished --;
 				// buf is the beginning line in the task
 				print_debug("try send task %d to %d", nowx, source);
-				send(&nowx, 1, source, BEGIN);				
+				send(&nowx, 1, source, BEGIN);
 				print_debug("finish send task %d to %d", nowx, source);
 				int line_of_work = min(unit, SIZE_X - nowx);
 				nowx += line_of_work;

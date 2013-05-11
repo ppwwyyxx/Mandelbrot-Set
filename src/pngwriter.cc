@@ -1,5 +1,5 @@
 // File: pngwriter.cc
-// Date: Sun Aug 26 22:17:20 2012 +0800
+// Date: Sat May 11 23:39:49 2013 +0800
 // Author: Yuxin Wu <ppwwyyxxc@gmail.com>
 
 #include <png.h>
@@ -24,9 +24,8 @@ void write_image(const char* file_name, short* img, int SIZE_X, int SIZE_Y){
 	png_write_info(png_ptr, info_ptr);
 	row = (png_bytep) malloc(3 * SIZE_X * sizeof(png_byte));
 	for (int j = 0; j < SIZE_Y; j ++){
-		for (int i = 0; i < SIZE_X; i ++){
+		for (int i = 0; i < SIZE_X; i ++)
 			row[3 * i] = row[3 * i + 1] = row[3 * i + 2] = img[i * SIZE_Y + j];
-		}
 		png_write_row(png_ptr, row);
 	}
 	png_write_end(png_ptr, NULL);
@@ -39,4 +38,4 @@ void write_image(const char* file_name, short* img, int SIZE_X, int SIZE_Y){
 	cout << "Image Saved to " << file_name << endl;
 	return ;
 }
- 
+
