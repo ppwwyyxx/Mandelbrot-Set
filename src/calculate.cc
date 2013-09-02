@@ -1,5 +1,5 @@
 // File: calculate.cc
-// Date: Sat May 11 23:40:37 2013 +0800
+// Date: Mon Sep 02 15:44:54 2013 +0800
 // Author: Yuxin Wu <ppwwyyxxc@gmail.com>
 
 #include <mpi.h>
@@ -55,10 +55,12 @@ short cal(double cr, double ci){
 
 
 #define cal_pixel(ptr, line_start,  i, j) \
-	double cr = line_start * xlen / SIZE_X + xmin; \
-	double ci = j * ylen / SIZE_Y + ymin; \
-	short t = cal(cr, ci); \
-	ptr[i * SIZE_Y + j] = 255 - sqrt(t) * 16;
+	do { \
+		double cr = line_start * xlen / SIZE_X + xmin; \
+		double ci = j * ylen / SIZE_Y + ymin; \
+		short t = cal(cr, ci); \
+		ptr[i * SIZE_Y + j] = 255 - sqrt(t) * 16;\
+	} while (0);
 
 void cal_rectangle_omp(){
 #ifdef USE_OMP
